@@ -1,0 +1,71 @@
+{
+    "name": "PlayerController",
+    "maps": [
+        {
+            "name": "Skills",
+            "id": "94ba2253-ae6b-452d-87fc-99efabc96ea9",
+            "actions": [
+                {
+                    "name": "Q Skill",
+                    "type": "Button",
+                    "id": "1065de9c-9eae-41b0-9853-d4fa4d1e1bfc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "E Skill",
+                    "type": "Button",
+                    "id": "94aaf9da-5c0b-4ffe-8b5d-1131fdf638b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "R Skill",
+                    "type": "Button",
+                    "id": "82f29826-9e5a-46f3-856d-ec744303d60e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d1ddf81e-e2ef-4657-834e-bd45bc4eadc5",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Q Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c562973-fcf0-4543-b337-0d9e52880d4e",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "008e6f27-0b87-47d9-a407-06f1cf536633",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "E Skill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
