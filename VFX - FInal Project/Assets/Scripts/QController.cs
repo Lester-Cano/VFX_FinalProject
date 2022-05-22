@@ -20,8 +20,8 @@ public class QController : MonoBehaviour
     private bool _creating, _dissolving;
     private float _temp =0;
 
-    [Header("Particle Effects")] 
-    
+    [Header("Particle Effects")]
+    [SerializeField] private float speedArrow;
     [SerializeField] private Transform spawnPos;
     [SerializeField] private ParticleSystem anticipation, mainEffect, dissipation;
     
@@ -75,7 +75,7 @@ public class QController : MonoBehaviour
         {
             _temp += Time.deltaTime * _timeModifier;
             dissolveMaterial.SetFloat("DissolveAmount_", 1 - _temp);
-            if(_temp >= 1)
+            if(_temp >= 0.9)
             {
                 _creating = false;
                 _temp = 0;
@@ -130,10 +130,24 @@ public class QController : MonoBehaviour
     public void ShootArrow()
     {
         Debug.Log("Arrow");
-        
+
         var anti = Instantiate(anticipation, spawnPos);
+        anti.gameObject.transform.parent = null;
         var main = Instantiate(mainEffect, spawnPos);
+        main.gameObject.transform.parent = null;
+        Rigidbody mainRgb = main.gameObject.GetComponent<Rigidbody>();
+        mainRgb.AddForce(Vector3.forward * speedArrow);
+        main.gameObject.transform.rotation = Quaternion.identity;
         anti.Play();
         main.Play();
+        Destroy(anti,10f);
+        Destroy(main, 10f);
+
+    }
+    public void Spawndisipation(GameObject hitPosition)
+    {
+        var dis = Instantiate(dissipation, hitPosition.gameObject.transform);
+        dis.Play();
+        Destroy(dis, 15f);
     }
 }
