@@ -424,7 +424,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: bca8b8e33091ef440879de5c203ca6cf, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: b79a858b1b0e43646ab5db5f939bf232, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -444,14 +444,14 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Q Shoot
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: E equip
+  - m_Name: E Equip
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -833,7 +833,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 9e7444fe5e0c6074aba66bab6070ef5d, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: ed311438173059641a3b771201ece136, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -847,7 +847,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: E equip
-  m_Speed: 1
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6373312584014455664}
@@ -860,7 +860,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 928b1765f2f857b42ad00d574cfbbe84, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: f0d02863253cb9f44bd3f7f8c33e4c8f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -875,7 +875,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: E equip
+    m_ConditionEvent: E Equip
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6160093694301244573}
@@ -883,9 +883,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 2.8226726
+  m_TransitionDuration: 0.60653496
   m_TransitionOffset: 0
-  m_ExitTime: 0.006363465
+  m_ExitTime: 0.0386868
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
