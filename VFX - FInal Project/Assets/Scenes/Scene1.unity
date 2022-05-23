@@ -336,7 +336,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684139000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19549672, y: 1.6750798, z: 8.829155}
+  m_LocalPosition: {x: -0.19549672, y: 1.6750798, z: 15.77}
   m_LocalScale: {x: 1.0000007, y: 1.000001, z: 1.0000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1039,7 +1039,7 @@ MonoBehaviour:
   ps: {fileID: 9218966336376127784}
   dissolveMaterial: {fileID: 2100000, guid: 845e7b290f555074b9f2b023eebb0551, type: 2}
   durationDissolve: 0.5
-  speedArrow: 1000
+  speedArrow: 2000
   spawnPos: {fileID: 441230212}
   anticipation: {fileID: 8101294776831039416, guid: 7c402019036809d45ba87c7cf41aa103, type: 3}
   mainEffect: {fileID: 8787354191727221151, guid: 592843cc0bbe63241bed18a9e34b96ce, type: 3}
