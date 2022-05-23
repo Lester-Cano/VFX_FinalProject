@@ -66,12 +66,13 @@ public class QController : MonoBehaviour
             if (_equipped)
             {
                 animator.SetTrigger("Q Shoot");
-                audioManager.Play("Q - Anticipation");
+                audioManager.Play("Q - Arrow");
                 _equipped = false;
             }
             else
             {
                 animator.SetTrigger("Q Equip");
+                audioManager.Play("Q - Equip");
                 _equipped = true;
             }
         }
@@ -108,6 +109,7 @@ public class QController : MonoBehaviour
     private void StartDissolving()
     {
         _dissolving = true;
+        audioManager.Play("Q - Unequip");
     }
 
     public void CreateBow()
@@ -143,16 +145,15 @@ public class QController : MonoBehaviour
         main.gameObject.transform.rotation = Quaternion.identity;
         anti.Play();
         main.Play();
-        audioManager.Play("Q - Arrow");
         Destroy(anti,5f);
         Destroy(main, 5f);
 
     }
     public void Spawndisipation(GameObject hitPosition)
     {
+        audioManager.Play("Q - Explosion");
         var dis = Instantiate(dissipation, hitPosition.gameObject.transform);
         dis.Play();
-        audioManager.Play("Q - Explosion");
         Destroy(dis, 5f);
     }
 }
