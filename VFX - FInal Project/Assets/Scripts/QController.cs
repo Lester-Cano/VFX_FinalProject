@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Audio;
 
 public class QController : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class QController : MonoBehaviour
 
     private bool _equipped;
 
+    [Header("Sounds")] 
+    public AudioManager audioManager;
+    
     private void Awake()
     {
         _playerController = new PlayerController();
@@ -62,6 +66,7 @@ public class QController : MonoBehaviour
             if (_equipped)
             {
                 animator.SetTrigger("Q Shoot");
+                audioManager.Play("Q - Anticipation");
                 _equipped = false;
             }
             else
@@ -129,8 +134,6 @@ public class QController : MonoBehaviour
 
     public void ShootArrow()
     {
-        Debug.Log("Arrow");
-
         var anti = Instantiate(anticipation, spawnPos);
         anti.gameObject.transform.parent = null;
         var main = Instantiate(mainEffect, spawnPos);
@@ -140,14 +143,16 @@ public class QController : MonoBehaviour
         main.gameObject.transform.rotation = Quaternion.identity;
         anti.Play();
         main.Play();
-        Destroy(anti,10f);
-        Destroy(main, 10f);
+        audioManager.Play("Q - Arrow");
+        Destroy(anti,5f);
+        Destroy(main, 5f);
 
     }
     public void Spawndisipation(GameObject hitPosition)
     {
         var dis = Instantiate(dissipation, hitPosition.gameObject.transform);
         dis.Play();
-        Destroy(dis, 15f);
+        audioManager.Play("Q - Explosion");
+        Destroy(dis, 5f);
     }
 }

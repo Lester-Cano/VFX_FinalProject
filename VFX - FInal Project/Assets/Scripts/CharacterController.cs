@@ -34,7 +34,6 @@ public class CharacterController : MonoBehaviour
     {
         if (_playerController.Skills.QSkill.triggered)
         {
-            Debug.Log("Q Skill");
         }
         
         if (_playerController.Skills.ESkill.triggered)
