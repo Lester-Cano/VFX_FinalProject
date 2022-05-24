@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Q.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/E.unity
+    guid: 077427361190b944088ebe8065546989
+  - enabled: 1
+    path: Assets/Scenes/R.unity
+    guid: fde5eb65056a5354d8500c56f19e97b0
   m_configObjects: {}

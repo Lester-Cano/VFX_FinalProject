@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Audio;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.UI;
 
 public class QController : MonoBehaviour
 {
@@ -21,18 +23,20 @@ public class QController : MonoBehaviour
     private bool _creating, _dissolving;
     private float _temp =0;
 
-    [Header("Particle Effects")]
-    [SerializeField] private float speedArrow;
+    [Header("Particle Effects")] [SerializeField]
+    private float speedArrow, originalSpeed, dissipationDur;
     [SerializeField] private Transform spawnPos;
     [SerializeField] private ParticleSystem anticipation, mainEffect, dissipation;
     
     //Q Animations
 
     private bool _equipped;
+    [SerializeField] private Animation equip, shot, disarm;
+    [SerializeField] private Slider slider;
 
     [Header("Sounds")] 
     public AudioManager audioManager;
-    
+
     private void Awake()
     {
         _playerController = new PlayerController();
@@ -57,6 +61,8 @@ public class QController : MonoBehaviour
     void Start()
     {
         dissolveMaterial.SetFloat("DissolveAmount_", 1);
+        originalSpeed = speedArrow;
+        dissipationDur = dissipation.main.duration;
     }
     
     void Update()
@@ -155,5 +161,11 @@ public class QController : MonoBehaviour
         var dis = Instantiate(dissipation, hitPosition.gameObject.transform);
         dis.Play();
         Destroy(dis, 5f);
+    }
+
+    public void ChangeVolume()
+    {
+        animator.speed = slider.value;
+        speedArrow = originalSpeed * slider.value;
     }
 }

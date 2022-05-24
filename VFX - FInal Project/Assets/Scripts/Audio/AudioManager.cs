@@ -30,5 +30,16 @@ namespace Audio
             var soundToLoop = Array.Find(sounds, sound => sound.name == soundName);
             soundToLoop.source.loop = true;
         }
+
+        public void UpdateValues()
+        {
+            foreach (var sound in sounds)
+            {
+                sound.source.clip = sound.clip;
+                sound.source.outputAudioMixerGroup = sound.audioMixerGroup;
+                sound.source.volume = sound.volume;
+                sound.source.pitch = sound.pitch;
+            }
+        }
     }
 }

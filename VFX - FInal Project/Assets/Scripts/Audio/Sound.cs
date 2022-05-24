@@ -13,7 +13,6 @@ namespace Audio
 
         [Range(0, 1)] public float volume;
         [Range(0.1f, 3)] public float pitch;
-
         [HideInInspector] public AudioSource source;
     }
 }
