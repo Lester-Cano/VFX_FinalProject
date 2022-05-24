@@ -25422,6 +25422,7 @@ MonoBehaviour:
   shield: {fileID: 919132148575259461}
   shieldEffects: {fileID: 0}
   shieldPosition: {fileID: 1801007716}
+  smoke: {fileID: 152985054}
   animator: {fileID: 0}
 --- !u!1 &919132148575259461 stripped
 GameObject:
@@ -25739,6 +25740,7 @@ Transform:
   m_Children:
   - {fileID: 6452705233293367652}
   - {fileID: 1097792265}
+  - {fileID: 152985056}
   m_Father: {fileID: 7151331952520122135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27272,11 +27274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7619440105420801854, guid: eb3e095189e28dd48928b7ecc4022217, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.52591324
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 7619440105420801854, guid: eb3e095189e28dd48928b7ecc4022217, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.0485935
+      value: -13.7
       objectReference: {fileID: 0}
     - target: {fileID: 7619440105420801854, guid: eb3e095189e28dd48928b7ecc4022217, type: 3}
       propertyPath: m_LocalRotation.w

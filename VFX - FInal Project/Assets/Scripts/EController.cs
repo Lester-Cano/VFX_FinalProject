@@ -10,6 +10,7 @@ public class EController : MonoBehaviour
     [SerializeField] GameObject shield;
     [SerializeField] ParticleSystem shieldEffects;
     [SerializeField] Transform shieldPosition;
+    [SerializeField] ParticleSystem smoke;
 
     private PlayerController _playerController;
     [SerializeField] private Animator animator;
@@ -65,6 +66,7 @@ public class EController : MonoBehaviour
         particleSystemHip.Play();
         shield.transform.position = shieldPosition.position;
         shieldEffects.Play();
+        smoke.Play();
     }
 
 }
