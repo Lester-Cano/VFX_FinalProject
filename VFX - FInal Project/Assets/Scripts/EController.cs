@@ -8,6 +8,7 @@ public class EController : MonoBehaviour
     [SerializeField] ParticleSystem[] particleSystemExtremities;
     [SerializeField] ParticleSystem particleSystemHip;
     [SerializeField] GameObject shield;
+    [SerializeField] ParticleSystem shieldEffects;
     [SerializeField] Transform shieldPosition;
 
     private PlayerController _playerController;
@@ -21,6 +22,7 @@ public class EController : MonoBehaviour
     void Awake()
     {
         _playerController = new PlayerController();
+        shieldEffects = shield.GetComponent<ParticleSystem>();
         animator = GetComponent<Animator>();
     }
 
@@ -41,14 +43,6 @@ public class EController : MonoBehaviour
             if (_equipped)
             {
                 animator.SetTrigger("E Shoot");
-
-                for (int i = 0; i < particleSystemExtremities.Length; i++)
-                {
-                    particleSystemExtremities[i].Play();
-                }
-                particleSystemHip.Play();
-                Instantiate(shield, shieldPosition.position, Quaternion.EulerAngles(90f, 0f, 0f));
-
                 _equipped = false;
             }
             else
@@ -60,6 +54,17 @@ public class EController : MonoBehaviour
                 _equipped = true;
             }
         }
+    }
+
+    void EXPLODE()
+    {
+        for (int i = 0; i < particleSystemExtremities.Length; i++)
+        {
+            particleSystemExtremities[i].Play();
+        }
+        particleSystemHip.Play();
+        shield.transform.position = shieldPosition.position;
+        shieldEffects.Play();
     }
 
 }
