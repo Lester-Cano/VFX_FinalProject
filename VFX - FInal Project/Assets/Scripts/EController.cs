@@ -14,11 +14,16 @@ public class EController : MonoBehaviour
 
     private PlayerController _playerController;
     [SerializeField] private Animator animator;
+    [SerializeField] Material dissolveMaterial;
 
     bool timerizer;
-    float timer = 0;
+    float _temp = 0;
+    float temporizador = 0;
+
+    [SerializeField] float _timeModifier = 1;
 
     private bool _equipped = false;
+    bool _creating, _dissolving;
 
     void Awake()
     {
@@ -55,6 +60,42 @@ public class EController : MonoBehaviour
                 _equipped = true;
             }
         }
+
+        if (_creating)
+        {
+            _temp += Time.deltaTime * _timeModifier;
+            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
+            if (_temp >= 0.9)
+            {
+                _creating = false;
+                _temp = 0;
+                _timeModifier = 0;
+            }
+        }
+        if (_dissolving)
+        {
+            _temp -= Time.deltaTime * _timeModifier;
+            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
+            if (_temp <= 0)
+            {
+                _dissolving = false;
+                _temp = 0;
+                _timeModifier = 0;
+            }
+        }
+
+        if (timerizer)
+        {
+            temporizador += Time.deltaTime;
+        }
+        if (temporizador >= 1.5f)
+        {
+            timerizer = false;
+            _dissolving = true;
+            _creating = false;
+            temporizador = 0;
+        }
+
     }
 
     void EXPLODE()
@@ -67,6 +108,9 @@ public class EController : MonoBehaviour
         shield.transform.position = shieldPosition.position;
         shieldEffects.Play();
         smoke.Play();
+        _creating = true;
+        _dissolving = false;
+        timerizer = true;
     }
 
 }
