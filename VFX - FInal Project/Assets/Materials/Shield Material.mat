@@ -97,7 +97,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - DissolveAmount: 1.0027816
+    - DissolveAmount: 1.0030134
     - Vector1_6596f89d6ef54da1a93f5e53c21d9904: 1
     - Vector1_8b2e41409f5345138496b6222639f6a9: 0.15
     - Vector1_a6d132f2deeb467381d56102a0ab4124: 0
