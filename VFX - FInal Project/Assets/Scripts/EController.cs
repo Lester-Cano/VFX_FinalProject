@@ -15,6 +15,7 @@ public class EController : MonoBehaviour
     private PlayerController _playerController;
     [SerializeField] private Animator animator;
     [SerializeField] Material dissolveMaterial;
+    [SerializeField] AudioSource audioSource;
 
     bool timerizer;
     float _temp = 0;
@@ -23,7 +24,7 @@ public class EController : MonoBehaviour
     [SerializeField] float _timeModifier = 1;
 
     private bool _equipped = false;
-    bool _creating, _dissolving;
+    [SerializeField] bool _creating, _dissolving;
 
     void Awake()
     {
@@ -54,28 +55,28 @@ public class EController : MonoBehaviour
             else
             {
                 animator.SetTrigger("E Equip");
-
-                
-
                 _equipped = true;
             }
         }
 
+        
+
         if (_creating)
         {
             _temp += Time.deltaTime * _timeModifier;
-            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
+            dissolveMaterial.SetFloat("DissolveAmount",1 - _temp);
             if (_temp >= 0.9)
             {
                 _creating = false;
                 _temp = 0;
                 _timeModifier = 0;
+                _dissolving = true;
             }
         }
         if (_dissolving)
         {
             _temp -= Time.deltaTime * _timeModifier;
-            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
+            dissolveMaterial.SetFloat("DissolveAmount",1 + _temp);
             if (_temp <= 0)
             {
                 _dissolving = false;
@@ -84,22 +85,13 @@ public class EController : MonoBehaviour
             }
         }
 
-        if (timerizer)
-        {
-            temporizador += Time.deltaTime;
-        }
-        if (temporizador >= 1.5f)
-        {
-            timerizer = false;
-            _dissolving = true;
-            _creating = false;
-            temporizador = 0;
-        }
+        
 
     }
 
     void EXPLODE()
     {
+        audioSource.Play();
         for (int i = 0; i < particleSystemExtremities.Length; i++)
         {
             particleSystemExtremities[i].Play();

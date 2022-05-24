@@ -853,7 +853,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "1784405c0f9c4e8fb5969d1266f3e3f8",
     "m_Id": 0,
-    "m_DisplayName": "Amount",
+    "m_DisplayName": "DissolveAmount",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
