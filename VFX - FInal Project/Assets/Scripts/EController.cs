@@ -10,14 +10,21 @@ public class EController : MonoBehaviour
     [SerializeField] GameObject shield;
     [SerializeField] ParticleSystem shieldEffects;
     [SerializeField] Transform shieldPosition;
+    [SerializeField] ParticleSystem smoke;
 
     private PlayerController _playerController;
     [SerializeField] private Animator animator;
+    [SerializeField] Material dissolveMaterial;
+    [SerializeField] AudioSource audioSource;
 
     bool timerizer;
-    float timer = 0;
+    float _temp = 0;
+    float temporizador = 0;
+
+    [SerializeField] float _timeModifier = 1;
 
     private bool _equipped = false;
+    [SerializeField] bool _creating, _dissolving;
 
     void Awake()
     {
@@ -48,16 +55,51 @@ public class EController : MonoBehaviour
             else
             {
                 animator.SetTrigger("E Equip");
-
-                
-
                 _equipped = true;
             }
         }
+
+        if (timerizer)
+        {
+            temporizador += Time.deltaTime;
+        }
+        if (temporizador >= 1.5f)
+        {
+            timerizer = false;
+            _dissolving = true;
+            temporizador = 0;
+        }
+
+        if (_creating)
+        {
+            _temp += Time.deltaTime * _timeModifier;
+            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
+            if (_temp >= 0.9)
+            {
+                _creating = false;
+                _temp = 0;
+                _timeModifier = 1;
+            }
+        }
+        if (_dissolving)
+        {
+            _temp -= Time.deltaTime * _timeModifier;
+            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
+            if (_temp <= 0)
+            {
+                _dissolving = false;
+                _temp = 0;
+                _timeModifier = 1;
+            }
+        }
+
+        
+
     }
 
     void EXPLODE()
     {
+        audioSource.Play();
         for (int i = 0; i < particleSystemExtremities.Length; i++)
         {
             particleSystemExtremities[i].Play();
@@ -65,6 +107,10 @@ public class EController : MonoBehaviour
         particleSystemHip.Play();
         shield.transform.position = shieldPosition.position;
         shieldEffects.Play();
+        smoke.Play();
+        _creating = true;
+        _dissolving = false;
+        timerizer = true;
     }
 
 }
