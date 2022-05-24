@@ -26,16 +26,17 @@ public class QController : MonoBehaviour
     [Header("Particle Effects")] [SerializeField]
     private float speedArrow, originalSpeed, dissipationDur;
     [SerializeField] private Transform spawnPos;
-    [SerializeField] private ParticleSystem anticipation, mainEffect, dissipation;
+    [SerializeField] private ParticleSystem anticipation, mainEffect, dissipation, dissipationIntenseEnd;
     
     //Q Animations
 
     private bool _equipped;
-    [SerializeField] private Animation equip, shot, disarm;
     [SerializeField] private Slider slider;
 
     [Header("Sounds")] 
     public AudioManager audioManager;
+
+    public bool _intense = true;
 
     private void Awake()
     {
@@ -142,23 +143,56 @@ public class QController : MonoBehaviour
 
     public void ShootArrow()
     {
-        var anti = Instantiate(anticipation, spawnPos);
-        anti.gameObject.transform.parent = null;
-        var main = Instantiate(mainEffect, spawnPos);
-        main.gameObject.transform.parent = null;
-        Rigidbody mainRgb = main.gameObject.GetComponent<Rigidbody>();
-        mainRgb.AddForce(Vector3.forward * speedArrow);
-        main.gameObject.transform.rotation = Quaternion.identity;
-        anti.Play();
-        main.Play();
-        Destroy(anti,5f);
-        Destroy(main, 5f);
-
+        if (!_intense)
+        {
+            var anti = Instantiate(anticipation, spawnPos);
+            anti.gameObject.transform.parent = null;
+            var main = Instantiate(mainEffect, spawnPos);
+            main.gameObject.transform.parent = null;
+            Rigidbody mainRgb = main.gameObject.GetComponent<Rigidbody>();
+            mainRgb.AddForce(Vector3.forward * speedArrow);
+            main.gameObject.transform.rotation = Quaternion.identity;
+            anti.Play();
+            main.Play();
+            Destroy(anti,5f);
+            Destroy(main, 5f);
+        }
     }
+
+    public IEnumerator ShootArrowIntenseEnd()
+    {
+        if (_intense)
+        {
+            var anti = Instantiate(anticipation, spawnPos);
+            anti.gameObject.transform.parent = null;
+            var main = Instantiate(mainEffect, spawnPos);
+            main.gameObject.transform.parent = null;
+            Rigidbody mainRgb = main.gameObject.GetComponent<Rigidbody>();
+            mainRgb.AddForce(Vector3.forward * speedArrow / 12);
+            main.gameObject.transform.rotation = Quaternion.identity;
+            anti.Play();
+            main.Play();
+        
+            yield return new WaitForSeconds(1);
+            mainRgb.AddForce(Vector3.forward * speedArrow);
+        
+            Destroy(anti,5f);
+            Destroy(main, 5f);
+        }
+    }
+    
     public void Spawndisipation(GameObject hitPosition)
     {
         audioManager.Play("Q - Explosion");
         var dis = Instantiate(dissipation, hitPosition.gameObject.transform);
+        dis.Play();
+        Destroy(dis, 5f);
+    }
+    
+    public void SpawnDisipationIntenseEnd(GameObject hitPosition)
+    {
+        audioManager.Play("Q - Explosion");
+        var dis = Instantiate(dissipationIntenseEnd, hitPosition.gameObject.transform);
         dis.Play();
         Destroy(dis, 5f);
     }
@@ -167,5 +201,17 @@ public class QController : MonoBehaviour
     {
         animator.speed = slider.value;
         speedArrow = originalSpeed * slider.value;
+    }
+
+    public void Intense()
+    {
+        if (_intense)
+        {
+            _intense = false;
+        }
+        else if (!_intense)
+        {
+            _intense = true;
+        }
     }
 }

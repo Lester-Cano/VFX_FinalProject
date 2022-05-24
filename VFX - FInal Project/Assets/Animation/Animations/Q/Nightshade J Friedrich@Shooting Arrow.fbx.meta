@@ -59,6 +59,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.6130268
+        functionName: ShootArrowIntenseEnd
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 43d168fb3dda80840ab68bb56bea358a, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.6824554
         functionName: ShootArrow
         data: 
