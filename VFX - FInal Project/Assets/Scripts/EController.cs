@@ -59,29 +59,37 @@ public class EController : MonoBehaviour
             }
         }
 
-        
+        if (timerizer)
+        {
+            temporizador += Time.deltaTime;
+        }
+        if (temporizador >= 1.5f)
+        {
+            timerizer = false;
+            _dissolving = true;
+            temporizador = 0;
+        }
 
         if (_creating)
         {
             _temp += Time.deltaTime * _timeModifier;
-            dissolveMaterial.SetFloat("DissolveAmount",1 - _temp);
+            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
             if (_temp >= 0.9)
             {
                 _creating = false;
                 _temp = 0;
-                _timeModifier = 0;
-                _dissolving = true;
+                _timeModifier = 1;
             }
         }
         if (_dissolving)
         {
             _temp -= Time.deltaTime * _timeModifier;
-            dissolveMaterial.SetFloat("DissolveAmount",1 + _temp);
+            dissolveMaterial.SetFloat("DissolveAmount", 1 - _temp);
             if (_temp <= 0)
             {
                 _dissolving = false;
                 _temp = 0;
-                _timeModifier = 0;
+                _timeModifier = 1;
             }
         }
 
